@@ -2,11 +2,16 @@ import React from 'react';
 import { useParams } from 'react-router-dom';
 import products from '../products.json';
 
-const Product = () => {
-	const { id } = useParams();
-	const [product = null] = products.filter((prod) => prod.id === parseInt(id));
-	if (!product) return;
-	const { name, description, category, price } = product;
+const Product = (props) => {
+	const { id: paramsId } = useParams();
+	const productFromJson =
+		products.find((prod) => prod.id === parseInt(paramsId)) || {};
+
+	const { id, name, description, category, price } = {
+		...productFromJson,
+		...props,
+	};
+
 	return (
 		<article data-id={id}>
 			<h1>{name}</h1>
