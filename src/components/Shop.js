@@ -23,10 +23,8 @@ const Shop = ({ products: propsProducts }) => {
 		(prod) =>
 			cat?.toLowerCase() === prod.category.toLowerCase() || cat === null,
 	);
-	console.log(search);
 
 	if (minPrice != null && maxPrice != null && search != null) {
-		console.log('ok');
 		products = propsProducts.filter(
 			(prod) =>
 				(minPrice == ' ' ? true : prod.price >= minPrice) &&
