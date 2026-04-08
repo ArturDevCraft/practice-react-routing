@@ -1,5 +1,5 @@
 import React from 'react';
-import { Route, Switch, Link, useHistory } from 'react-router-dom';
+import { Route, Switch, useHistory } from 'react-router-dom';
 import Shop from '../src/components/Shop';
 import products from './../src/products.json';
 
@@ -14,13 +14,18 @@ const Task04 = () => {
 		<>
 			<h1>Task04</h1>
 			<select onChange={changeHandler}>
-				<option>-- Select sort --</option>
+				<option value="">-- Select sort --</option>
 				<option value="price-asc">Sort by price asc</option>
 				<option value="price-desc">Sort by price desc</option>
 			</select>
-			<Route path="/task04/:sort">
-				<Shop products={products} />
-			</Route>
+			<Switch>
+				<Route path="/task04/:sort">
+					<Shop products={products} />
+				</Route>
+				<Route path="/task04">
+					<Shop products={products} />
+				</Route>
+			</Switch>
 		</>
 	);
 };
